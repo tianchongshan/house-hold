@@ -21,4 +21,6 @@
         <module>house-hold-service</module>
     </modules>
 
+    <name>house-hold</name>
+
 </project>

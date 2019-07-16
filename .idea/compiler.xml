@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="house-hold-dao" />
+        <module name="house-hold-interface" />
         <module name="house-hold-service" />
         <module name="household" />
         <module name="household-common" />
@@ -23,6 +24,7 @@
     <bytecodeTargetLevel>
       <module name="house-hold" target="1.8" />
       <module name="house-hold-dao" target="1.8" />
+      <module name="house-hold-interface" target="1.8" />
       <module name="house-hold-service" target="1.8" />
       <module name="household" target="1.8" />
       <module name="household-common" target="1.8" />

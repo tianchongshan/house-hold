@@ -8,7 +8,13 @@
         <option value="$PROJECT_DIR$/household-dao/pom.xml" />
         <option value="$PROJECT_DIR$/household-service/pom.xml" />
         <option value="$PROJECT_DIR$/householdinterface/pom.xml" />
+        <option value="$PROJECT_DIR$/house-hold-service/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/house-hold-service/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
