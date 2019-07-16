@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/household.iml" filepath="$PROJECT_DIR$/household.iml" />
+      <module fileurl="file://$PROJECT_DIR$/house-hold.iml" filepath="$PROJECT_DIR$/house-hold.iml" />
+      <module fileurl="file://$PROJECT_DIR$/house-hold-dao/house-hold-dao.iml" filepath="$PROJECT_DIR$/house-hold-dao/house-hold-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/house-hold-interface/house-hold-interface.iml" filepath="$PROJECT_DIR$/house-hold-interface/house-hold-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/house-hold-service/house-hold-service.iml" filepath="$PROJECT_DIR$/house-hold-service/house-hold-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/house-hold-common/household-common.iml" filepath="$PROJECT_DIR$/house-hold-common/household-common.iml" />
     </modules>
   </component>
 </project>

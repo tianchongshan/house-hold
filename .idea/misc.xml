@@ -4,6 +4,10 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/household-common/pom.xml" />
+        <option value="$PROJECT_DIR$/household-dao/pom.xml" />
+        <option value="$PROJECT_DIR$/household-service/pom.xml" />
+        <option value="$PROJECT_DIR$/householdinterface/pom.xml" />
       </list>
     </option>
   </component>
