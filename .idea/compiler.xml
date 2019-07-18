@@ -10,16 +10,6 @@
         <module name="house-hold-dao" />
         <module name="house-hold-interface" />
         <module name="house-hold-service" />
-        <module name="household" />
-        <module name="household-common" />
-        <module name="household-dao" />
-        <module name="household-service" />
-      </profile>
-      <profile name="Annotation profile for household-interface" enabled="true">
-        <sourceOutputDir name="../householdinterface/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../householdinterface/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="householdinterface" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -28,11 +18,6 @@
       <module name="house-hold-dao" target="1.8" />
       <module name="house-hold-interface" target="1.8" />
       <module name="house-hold-service" target="1.8" />
-      <module name="household" target="1.8" />
-      <module name="household-common" target="1.8" />
-      <module name="household-dao" target="1.8" />
-      <module name="household-service" target="1.8" />
-      <module name="householdinterface" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
