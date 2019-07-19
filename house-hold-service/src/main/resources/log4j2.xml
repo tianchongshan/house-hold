@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration  status="info">
+    <Properties>
+        <Property name="log_pattern">%d{HH:mm:ss.SSS} [%-5level] [%t] [%X{TRACE}] %C{1.} %M.%L - %msg%xEx%n</Property>
+        <Property name="log.dir">/data/applog/household</Property>
+    </Properties>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${log_pattern}"></PatternLayout>
+        </Console>
+        <!--这个会打印出所有的信息，每次大小超过size，则这个日志会自动存入按年份-月份建立的文件夹下面并压缩，作为存档-->
+        <RollingFile name="RollingFile" fileName="${log.dir}\app_info.log" filePattern="${log.dir}\his\log-%d{yyyy-MM-dd}-%i.log">
+             <PatternLayout pattern="${log_pattern}" />
+            <Policies>
+                <!-- 基于时间的滚动策略(当达到条件后会自动将条件前的日志生成一个备份日志文件，条件后的日志输出到最新的日志文件中)
+                interval属性用来指定多久滚动一次，默认是1 hour。 modulate=true用来调整时间：
+                比如现在是早上3am，interval是4，那么第一次滚动是在4am，接着是8am，12am...而不是7am. -->
+                <!-- 关键点在于 filePattern后的日期格式，以及TimeBasedTriggeringPolicy的interval，
+                日期格式精确到哪一位，interval也精确到哪一个单位 -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.tcs" level="INFO" additivity="true">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </Logger>
+        <Root>
+            <AppenderRef ref="console"></AppenderRef>
+        </Root>
+            
+    </Loggers>
+
+
+</Configuration>
