@@ -144,7 +144,7 @@ public class DruidConfig {
         //添加xml目录
         VFS.addImplClass(SpringBootVFS.class);
         PathMatchingResourcePatternResolver resolver=new PathMatchingResourcePatternResolver();
-        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:com/tcs/household/persistent/mapper/**.xml"));
+        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:com/tcs/household/persistent/mapper/**.xml,classpath:com.tcs.household.mgr.persistent.mapper/**.xml"));
         return sqlSessionFactoryBean.getObject();
     }
 
