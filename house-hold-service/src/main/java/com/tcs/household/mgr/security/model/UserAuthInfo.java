@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 /**
- * Context用用户对象
+ * Context用用户对象   实现了DetailsService接口，用来做登录验证
  * Created by chongshan.tian01.
  */
 @Getter

@@ -35,7 +35,7 @@ public class SystemUserInfo {
     @Column(name = "`last_login_time")
     private Date lastLoginTime;
 
-    @Column(name = "`last_login_ip")
+    @Column(name = "`last_login_ip`")
     private String lastLoginIp;
 
     @Column(name = "`is_freeze`")
@@ -44,7 +44,7 @@ public class SystemUserInfo {
     @Column(name = "`flag`")
     private Integer flag;
 
-    @Column(name = "create_time")
+    @Column(name = "`create_time`")
     private Date createTime;
 
     @Column(name = "`updateTime`")
