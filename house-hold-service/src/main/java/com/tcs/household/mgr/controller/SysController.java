@@ -7,15 +7,14 @@ import com.tcs.household.mgr.facade.RoleFacadeService;
 import com.tcs.household.mgr.facade.SysUserFacadeService;
 import com.tcs.household.mgr.model.request.LoginUser;
 import com.tcs.household.mgr.model.request.UserRequest;
+import com.tcs.household.mgr.security.model.UserAuthInfo;
 import com.tcs.household.model.response.JsonResponse;
 import com.tcs.household.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -45,6 +44,13 @@ public class SysController {
     private SysUserFacadeService userFacadeService;
 
 
+    /**
+     * 用户登录
+     * @param loginUser
+     * @param request
+     * @return
+     * @throws AuthenticationException
+     */
     @RequestMapping(value = "${admin.login.url}")
     public JsonResponse<String> createAuthenticationToken(@RequestBody LoginUser loginUser, HttpServletRequest request)
             throws AuthenticationException {
@@ -54,6 +60,22 @@ public class SysController {
            return JsonResponse.success(token);
     }
 
+    /**
+     * 验证Token
+     * @param token
+     * @return
+     */
+    @RequestMapping(value="${token.validate.url}", method= RequestMethod.POST)
+    public JsonResponse<UserAuthInfo> tokenValidate(@RequestParam("token") String token) {
+        return JsonResponse.success(loginFacadeService.tokenValidate(token));
+    }
+
+    /**
+     *
+     * 新增用户
+     * @param user
+     * @return
+     */
     @PreAuthorize("hasAuthority('sys:user:add')")
     @RequestMapping("/api/sys/user/add")
     public JsonResponse<Void> addUser(@RequestBody UserRequest user){
