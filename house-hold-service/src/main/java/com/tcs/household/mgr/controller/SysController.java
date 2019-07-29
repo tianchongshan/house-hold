@@ -76,8 +76,7 @@ public class SysController {
      * @param user
      * @return
      */
-    @PreAuthorize("hasAuthority('sys:user:add')")
-    @RequestMapping("/api/sys/user/add")
+    @RequestMapping("/sys/user/add")
     public JsonResponse<Void> addUser(@RequestBody UserRequest user){
         sysUserFacadeService.saveUser(user);
         return JsonResponse.success();

@@ -74,11 +74,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/**/*.js",
                 "/**/*.js.map",
                 "/**/*.svg",
-                "/**/fonts/*.*",
-                "/api/web/**"
+                "/**/fonts/*.*"
         ).permitAll()
                 .antMatchers(loginUrl).permitAll()         //授权api
                 .antMatchers("/api/web/**").permitAll()
+                .antMatchers("/sys/user/add").permitAll()
                 .anyRequest().authenticated();      //禁用其他链接(需要认证)
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);  //添加JWT filter
 

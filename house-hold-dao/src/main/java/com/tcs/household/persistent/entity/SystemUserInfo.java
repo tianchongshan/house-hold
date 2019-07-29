@@ -47,7 +47,7 @@ public class SystemUserInfo {
     @Column(name = "`create_time`")
     private Date createTime;
 
-    @Column(name = "`updateTime`")
+    @Column(name = "`update_time`")
     private Date updateTime;
 
     public Integer getId() {

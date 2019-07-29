@@ -10,6 +10,7 @@ import com.tcs.household.persistent.entity.SystemUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by chongshan.tian01.
@@ -40,10 +41,12 @@ public class SysUserFacadeService {
         userInfo.setIsFreeze(0);
         userInfo.setUpdateTime(new Date());
         userInfo.setCreateTime(new Date());
+        userInfo.setType(1);
         userInfo.setType(LoginUserTypeEnums.customer.getType());
         userInfo.setFlag(0);
-        userInfo.setUserCode(codeService.generateCode("USER","USERCODE",new Date(),null));
+        userInfo.setUserCode("1");
+        //userInfo.setUserCode(codeService.generateCode("USER","USERCODE",new Date(),null));
         userInfoDao.saveSelective(userInfo);
-        userRoleDao.addUserRole(userInfo.getId(), user.getRoles());
+        //userRoleDao.addUserRole(userInfo.getId(), user.getRoles());
     }
 }

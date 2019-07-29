@@ -14,12 +14,13 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created by chongshan.tian01.
- */
+
+
 @Aspect
 @Component
-@Slf4j
+@Slf4j */
 public class MgrAuthAspect {
-
+/*
     @Pointcut(value = "execution(public * com.tcs.household.mgr.controller.*.*(..))")
     public void controllerCut(){}
 
@@ -47,5 +48,6 @@ public class MgrAuthAspect {
         }
         return jpg.proceed();
     }
+*/
 
 }
