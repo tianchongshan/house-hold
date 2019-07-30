@@ -21,7 +21,7 @@ public class UserAuthInfo implements UserDetails {
 
     private String loginName;
 
-    private String userName;
+    private String username;
 
     private Integer userType;
 

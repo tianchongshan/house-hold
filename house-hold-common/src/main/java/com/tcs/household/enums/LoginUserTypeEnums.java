@@ -11,9 +11,7 @@ import lombok.Getter;
 public enum LoginUserTypeEnums  {
 
     admin(1,"管理员"),
-    housekeeper(2,"家政人员"),
-    customer(3,"顾客");
-
+    customer(2,"顾客");
 
 
     private Integer type;

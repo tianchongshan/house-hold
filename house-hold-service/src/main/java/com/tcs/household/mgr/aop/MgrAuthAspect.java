@@ -9,19 +9,21 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 /**
  * Created by chongshan.tian01.
-
+ */
 
 @Aspect
 @Component
-@Slf4j */
+@Slf4j
+@Order(2)
 public class MgrAuthAspect {
-/*
-    @Pointcut(value = "execution(public * com.tcs.household.mgr.controller.*.*(..))")
+
+    @Pointcut(value = "execution(public * com.tcs.household.mgr.controller.*.*(..)) && !execution(public * com.tcs.household.mgr.controller.SysController.addUser(..))")
     public void controllerCut(){}
 
     @Around(value = "controllerCut()")
@@ -48,6 +50,6 @@ public class MgrAuthAspect {
         }
         return jpg.proceed();
     }
-*/
+
 
 }

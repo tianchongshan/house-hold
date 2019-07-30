@@ -30,9 +30,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <fastjson.version>1.2.58</fastjson.version>
         <soa-common.version>1.2.2-SNAPSHOT</soa-common.version>
-        <tk.mybatis.version>2.0.2</tk.mybatis.version>
+        <tk.mybatis.version>2.1.5</tk.mybatis.version>
 
-        <mapper-core.version>1.0.2</mapper-core.version>
+        <mapper-core.version>1.1.5</mapper-core.version>
         <mapper-base.version>1.1.5</mapper-base.version>
         <mapper-weekend.version>1.1.3</mapper-weekend.version>
         <mapper-spring.version>1.0.1</mapper-spring.version>
