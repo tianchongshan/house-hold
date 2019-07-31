@@ -16,11 +16,22 @@ public class SysCommonDao {
     @Autowired
     private SystemCommonMapper mapper;
 
-    public List<SystemPermissionInfo> getPermissonByLoginName(String userName) {
-        return null;
+
+    /**
+     * 取得用户角色名
+     * @param loginName
+     * @return
+     */
+    public List<String> getUserRoleName(String loginName) {
+        return mapper.getUserRoles(loginName);
     }
 
-    public List<String> getUserRoleName(String userName) {
-        return null;
+    /**
+     * 取得用戶權限
+     * @param loginName
+     * @return
+     */
+    public List<SystemPermissionInfo> getPermissonByLoginName(String loginName) {
+        return mapper.getPermissonByLoginName(loginName);
     }
 }

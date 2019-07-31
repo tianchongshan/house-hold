@@ -2,5 +2,137 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tcs.household.mgr.persistent.mapper.SystemCommonMapper">
 
-
+    <select id="getPermissonByLoginName" resultType="com.tcs.household.mgr.persistent.entity.SystemPermissionInfo">
+		SELECT DISTINCT
+			t1.id,
+			t1.perm_name,
+			t1.remark,
+			t1.url,
+			t1.icon,
+			t1.permission,
+			t1.p_id,
+			t1.type,
+			t1.sort,
+			t1.method
+		FROM
+			t_wm_system_permission_info t1
+		JOIN t_wm_system_role_permission t2 ON t1.id = t2.permission_id
+		JOIN t_wm_system_role t3 ON t3.id = t2.role_id
+		AND t3.flag = 0
+		AND t1.flag = 0
+		JOIN t_wm_system_user_role t4 ON t3.id = t4.role_id
+		JOIN t_wm_system_user_info t5 ON t5.id = t4.user_id
+		AND t5.flag = 0
+		AND t5.login_name = #{loginName}
+		order by p_id, sort, id
+		/*SysCommonMapper.getPermissonByLoginName*/
+	</select>
+    <select id="getMenuByLoginName" resultType="com.tcs.household.mgr.persistent.entity.SystemPermissionInfo">
+		SELECT DISTINCT
+			t1.id,
+			t1.perm_name,
+			t1.remark,
+			t1.url,
+			t1.icon,
+			t1.permission,
+			t1.p_id,
+			t1.type,
+			t1.sort,
+			t1.method
+		FROM
+			t_wm_system_permission_info t1
+		JOIN t_wm_system_role_permission t2
+		ON t1.id = t2.permission_id
+		and t1.type = 1
+		AND t1.flag = 0
+		JOIN t_wm_system_role t3 ON t3.id = t2.role_id
+		AND t3.flag = 0
+		JOIN t_wm_system_user_role t4 ON t3.id = t4.role_id
+		JOIN t_wm_system_user_info t5 ON t5.id = t4.user_id
+		AND t5.flag = 0
+		AND t5.login_name = #{loginName}
+		union
+		SELECT DISTINCT
+			t1.id,
+			t1.perm_name,
+			t1.remark,
+			t1.url,
+			t1.icon,
+			t1.permission,
+			t1.p_id,
+			t1.type,
+			t1.sort,
+			t1.method
+		FROM
+			t_wm_system_permission_info t1
+		where
+			t1.type = 1
+		and t1.flag = 0
+		and t1.p_id = 0
+		order by p_id, sort, id
+		/*SysCommonMapper.getMenuByLoginName*/
+	</select>
+    <select id="getAllPermissions" resultType="com.tcs.household.mgr.persistent.entity.SystemPermissionInfo">
+		SELECT DISTINCT
+			t1.id,
+			t1.perm_name,
+			t1.remark,
+			t1.url,
+			t1.icon,
+			t1.permission,
+			t1.p_id,
+			t1.type,
+			t1.sort,
+			t1.method
+		FROM
+			t_wm_system_permission_info t1
+		where t1.flag = 0
+		order by p_id, sort, id
+		/*SysCommonMapper.getAllPermissions*/
+	</select>
+    <select id="getSecondMenus" resultType="com.tcs.household.mgr.persistent.entity.SystemPermissionInfo">
+		SELECT DISTINCT
+			t1.id,
+			t1.perm_name,
+			t1.p_id
+		FROM
+			t_wm_system_permission_info t1
+		where t1.p_id in (select id from t_wm_system_permission_info where p_id = 0 and flag = 0)
+		and t1.flag = 0
+		order by p_id, sort, id
+		/*SysCommonMapper.getSecondMenus*/
+	</select>
+    <select id="getUserRoles" resultType="java.lang.String">
+	select
+		t1.role_name
+	from
+		t_wm_system_role t1
+	join t_wm_system_user_role t2
+	on t1.id = t2.role_id
+	and t1.flag = 0
+	join t_wm_system_user_info t3
+	on t3.id = t2.user_id
+	and t3.flag = 0
+	and t3.login_name = #{loginName}
+		/*SysCommonMapper.getUserRoles*/
+	</select>
+    <select id="getUserRoleNames" resultType="com.tcs.household.persistent.entity.SystemUserRole">
+        select
+        t1.id as user_id,
+        group_concat(distinct t3.nick_name order by nick_name desc separator ', ') as role_name
+        from
+        t_wm_system_user_info t1
+        join t_wm_system_user_role t2
+        on t1.id = t2.user_id
+        and t1.flag = 0
+        <foreach close=")" collection="lisUserId" item="userId" open="(" separator=",">
+            #{userId}
+        </foreach>
+        join t_wm_system_role t3
+        on t2.role_id = t3.id
+        and t3.flag = 0
+        group by t1.id
+        order by t1.id, role_name
+        /*SysCommonMapper.getUserRoleNames*/
+    </select>
 </mapper>

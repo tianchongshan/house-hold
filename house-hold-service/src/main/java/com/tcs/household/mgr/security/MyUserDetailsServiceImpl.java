@@ -34,14 +34,13 @@ public class MyUserDetailsServiceImpl implements UserDetailsService{
             return null;
         }
 
-        List<SystemPermissionInfo> lisPermission = cmnDao.getPermissonByLoginName( userName);
+        List<SystemPermissionInfo> lisPermission = cmnDao.getPermissonByLoginName(userName);
         List<String> lisRole = cmnDao.getUserRoleName( userName);
         for (String roleName : lisRole) {
             SystemPermissionInfo p = new SystemPermissionInfo();
             p.setPermission(roleName);
             lisPermission.add(p);
         }
-
         return MyUserFactory.createUserAuthInfo(user, lisPermission);
     }
     /**

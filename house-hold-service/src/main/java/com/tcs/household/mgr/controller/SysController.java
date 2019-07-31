@@ -39,8 +39,10 @@ public class SysController {
     @Value("${auth.header}")
     private String tokenHeader;
 
+    @Autowired
     private LoginFacadeService loginFacadeService;
 
+    @Autowired
     private SysUserFacadeService userFacadeService;
 
 

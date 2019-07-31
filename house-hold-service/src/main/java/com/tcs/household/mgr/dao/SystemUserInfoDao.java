@@ -41,9 +41,6 @@ public class SystemUserInfoDao extends BaseDao<SystemUserInfo> {
      * @return
      */
     public SystemUserInfo getUserByLoginName(String userLoginName) {
-        SystemUserInfo user = new SystemUserInfo();
-        user.setLoginName(userLoginName);
-        user.setFlag(0);
-        return mapper.selectOne(user);
+        return mapper.getUserByLoginName(userLoginName);
     }
 }

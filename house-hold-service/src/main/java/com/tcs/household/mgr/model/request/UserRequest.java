@@ -23,5 +23,5 @@ public class UserRequest extends AbstractBaseRequest {
 
     private Integer type;
 
-    private Integer[] roles;
+    private Integer roleId;
 }

@@ -24,7 +24,9 @@ public enum MessageCode {
     DATA_NAME_EXISTS_ERROR("100010", "名称已存在"),
     TOKEN_INVALID("100011", "Token无效或过期"),
     UPDATE_ERROR("100016", "数据更新失败"),
-    WEB_USER_NOT_AUTH("100017", "用户认证失败");
+    WEB_USER_NOT_AUTH("100017", "用户认证失败"),
+
+    USER_NOX_EXISTS("200000","用户不存在");
     private final String code;
 
     private final String message;

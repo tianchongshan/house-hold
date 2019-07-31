@@ -18,7 +18,7 @@ public class SystemUserInfo {
     private String loginName;
 
     @Column(name = "`user_name`")
-    private String userName;
+    private String username;
 
     @Column(name = "`password`")
     private String password;
@@ -68,12 +68,12 @@ public class SystemUserInfo {
         return this;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public SystemUserInfo setUserName(String userName) {
-        this.userName = userName;
+    public SystemUserInfo setUsername(String username) {
+        this.username = username;
         return this;
     }
 

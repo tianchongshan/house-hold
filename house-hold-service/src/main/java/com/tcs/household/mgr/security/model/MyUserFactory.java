@@ -20,7 +20,7 @@ public class MyUserFactory {
     public static UserAuthInfo createUserAuthInfo(SystemUserInfo user,
                                                   List<SystemPermissionInfo> listPermission){
         UserAuthInfo userAuthInfo=new UserAuthInfo(user.getId(),user.getLoginName(),
-                user.getUserName(),user.getType(),mapToGrantedAuthorities(listPermission));
+                user.getUsername(),user.getType(),mapToGrantedAuthorities(listPermission));
         return userAuthInfo;
 
     }
