@@ -9,7 +9,6 @@ import com.tcs.household.mgr.security.model.LoginUserToken;
 import com.tcs.household.mgr.security.model.UserAuthInfo;
 import com.tcs.household.util.CommonUtils;
 import com.tcs.household.util.JwtTokenUtil;
-import com.tcs.household.util.RedisService;
 import com.tcs.household.util.RedisUtils;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class LoginFacadeService {
     @Autowired
     private MyUserDetailsServiceImpl userDetailsService;
 
-    private RedisService redisService;
+
     /**
      * 认证用户
      */
@@ -60,7 +59,7 @@ public class LoginFacadeService {
             final String authToken = token;
             Claims userInfo = jwtTokenUtil.getUserinfoFromToken(authToken);
             String username = userInfo.get(JwtTokenUtil.CLAIM_KEY_USERNAME, String.class);
-            Object sessionToken = redisService.get(RedisConstant.REDIS_USER_LOGIN_TOKEN.getKey() + username);
+            Object sessionToken = RedisUtils.get(RedisConstant.REDIS_USER_LOGIN_TOKEN.getKey() + username);
             if (StringUtils.isEmpty(sessionToken)
                     || !sessionToken.toString().equals(token)) {
                 throw new BizException(MessageCode.TOKEN_INVALID.getCode(),
