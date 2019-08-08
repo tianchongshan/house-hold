@@ -58,7 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()   //使用jwt，不使用csrf
+        http.csrf().disable()
+                //使用jwt，不使用csrf
         .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).accessDeniedHandler(accessDeniedHandler)
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()  //基于token，不使用session
         .authorizeRequests()          //请求授权

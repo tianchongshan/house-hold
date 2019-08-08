@@ -27,7 +27,7 @@
 		order by p_id, sort, id
 		/*SysCommonMapper.getPermissonByLoginName*/
 	</select>
-    <select id="getMenuByLoginName" resultType="com.tcs.household.mgr.persistent.entity.SystemPermissionInfo">
+    <!--<select id="getMenuByLoginName" resultType="com.tcs.household.mgr.persistent.entity.SystemPermissionInfo">
 		SELECT DISTINCT
 			t1.id,
 			t1.perm_name,
@@ -102,6 +102,7 @@
 		order by p_id, sort, id
 		/*SysCommonMapper.getSecondMenus*/
 	</select>
+	-->
     <select id="getUserRoles" resultType="java.lang.String">
 	select
 		t1.role_name
@@ -116,7 +117,8 @@
 	and t3.login_name = #{loginName}
 		/*SysCommonMapper.getUserRoles*/
 	</select>
-    <select id="getUserRoleNames" resultType="com.tcs.household.persistent.entity.SystemUserRole">
+  <!--
+	<select id="getUserRoleNames" resultType="com.tcs.household.persistent.entity.SystemUserRole">
         select
         t1.id as user_id,
         group_concat(distinct t3.nick_name order by nick_name desc separator ', ') as role_name
@@ -135,4 +137,5 @@
         order by t1.id, role_name
         /*SysCommonMapper.getUserRoleNames*/
     </select>
+	-->
 </mapper>

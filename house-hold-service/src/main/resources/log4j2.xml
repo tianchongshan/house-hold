@@ -21,6 +21,7 @@
             </Policies>
         </RollingFile>
     </Appenders>
+
     <Loggers>
         <Logger name="com.tcs" level="INFO" additivity="true">
             <AppenderRef ref="console" />
@@ -29,8 +30,5 @@
         <Root>
             <AppenderRef ref="console"></AppenderRef>
         </Root>
-            
     </Loggers>
-
-
 </Configuration>

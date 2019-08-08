@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created by chongshan.tian01.
  */
+@CrossOrigin
 @RestController
 public class SysController {
 
@@ -53,9 +54,11 @@ public class SysController {
      * @return
      * @throws AuthenticationException
      */
+
     @RequestMapping(value = "${admin.login.url}")
     public JsonResponse<String> createAuthenticationToken(@RequestBody LoginUser loginUser, HttpServletRequest request)
             throws AuthenticationException {
+            Integer sex = 0;
            final String token=loginFacadeService.login(loginUser,request);
            //存入redis
            RedisUtils.set(RedisConstant.REDIS_USER_LOGIN_TOKEN.getKey()+"_"+loginUser.getUsername(),token,36000);

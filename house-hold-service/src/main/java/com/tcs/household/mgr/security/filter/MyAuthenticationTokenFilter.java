@@ -129,6 +129,8 @@ public class MyAuthenticationTokenFilter extends OncePerRequestFilter {
         private void responseMessage(HttpServletResponse response, JsonResponse<Void> resp, int responseStatus)
 			throws IOException {
             response.setContentType("application/json; charset=utf-8");
+            response.setHeader("Access-Control-Allow-Origin", "*");
+            response.setHeader("Access-Control-Allow-Method","POST,GET");
             response.setCharacterEncoding("UTF-8");
             response.setStatus(responseStatus);
             String userJson = JSON.toJSONString(resp, SerializerFeature.WriteNullBooleanAsFalse, SerializerFeature.WriteNullListAsEmpty, SerializerFeature.WriteNullStringAsEmpty);

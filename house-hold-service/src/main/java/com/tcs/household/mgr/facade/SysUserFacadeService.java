@@ -49,6 +49,6 @@ public class SysUserFacadeService {
         userInfo.setFlag(0);
         userInfo.setUserCode(UUID.randomUUID().toString());
         userInfoDao.saveSelective(userInfo);
-        userRoleDao.addUserRole(userInfo.getId(),user.getRoleId());
+        //userRoleDao.addUserRole(userInfo.getId(),user.getRoleId());
     }
 }
