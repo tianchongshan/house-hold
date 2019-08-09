@@ -40,7 +40,7 @@ public class UserAuthInfo implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return this.loginName;
     }
 
     @Override
