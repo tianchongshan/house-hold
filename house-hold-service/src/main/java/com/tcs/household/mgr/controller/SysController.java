@@ -7,6 +7,7 @@ import com.tcs.household.mgr.facade.RoleFacadeService;
 import com.tcs.household.mgr.facade.SysUserFacadeService;
 import com.tcs.household.mgr.model.request.LoginUser;
 import com.tcs.household.mgr.model.request.UserRequest;
+import com.tcs.household.mgr.model.response.LoginUserInfo;
 import com.tcs.household.mgr.security.model.UserAuthInfo;
 import com.tcs.household.model.response.JsonResponse;
 import com.tcs.household.util.RedisUtils;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -86,6 +88,25 @@ public class SysController {
         return JsonResponse.success();
 
     }
+
+
+    /**
+     * 注销
+     * @return
+     */
+    @PostMapping("${admin.logout.url}")
+    public JsonResponse<Void> logout() {
+        loginFacadeService.logout();
+        return JsonResponse.success();
+    }
+
+    @PostMapping("/api/user/info")
+    public JsonResponse<LoginUserInfo> getUserInfo(){
+        UserAuthInfo jwtUser = (UserAuthInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        LoginUserInfo userInfo = userFacadeService.getLoginUserInfo(jwtUser.getUsername());
+        return JsonResponse.success(userInfo);
+    }
+
 
 
 

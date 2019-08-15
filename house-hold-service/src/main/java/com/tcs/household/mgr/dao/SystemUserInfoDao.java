@@ -21,6 +21,8 @@ public class SystemUserInfoDao extends BaseDao<SystemUserInfo> {
         return mapper;
     }
 
+
+
     /**
      * 保存用户登录信息
      */

@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class UserRoleEntity {
 
-    private String userId;
+    private Integer userId;
 
     private String roleName;
 }

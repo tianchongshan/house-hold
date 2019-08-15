@@ -50,7 +50,7 @@ public class SystemPermissionInfo {
      * 上级ID
      */
    @Column(name="`p_id`")
-    private Integer pId;
+    private Integer pid;
     /**
      * 排序
      */
@@ -128,12 +128,12 @@ public class SystemPermissionInfo {
         return this;
     }
 
-    public Integer getpId() {
-        return pId;
+    public Integer getPid() {
+        return pid;
     }
 
-    public SystemPermissionInfo setpId(Integer pId) {
-        this.pId = pId;
+    public SystemPermissionInfo setPid(Integer pid) {
+        this.pid = pid;
         return this;
     }
 

@@ -21,4 +21,5 @@ public class SystemUserInfoDao extends BaseDao<SystemUserInfo> {
     }
 
 
+
 }

@@ -80,4 +80,13 @@ public class LoginFacadeService {
                     MessageCode.TOKEN_INVALID.getMessage());
         }
     }
+
+    /**
+     * 注销
+     */
+    public void logout() {
+        String username = ((UserAuthInfo)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        RedisUtils.delete(RedisConstant.REDIS_USER_LOGIN_TOKEN.getKey()+username);
+
+    }
 }
