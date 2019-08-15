@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 public class UserRequest extends AbstractBaseRequest {
     private static final long serialVersionUID = -8781046558236850502L;
+    private Integer userId;
 
     private String loginName;
 

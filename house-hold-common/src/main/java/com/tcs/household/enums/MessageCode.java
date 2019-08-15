@@ -26,7 +26,45 @@ public enum MessageCode {
     UPDATE_ERROR("100016", "数据更新失败"),
     WEB_USER_NOT_AUTH("100017", "用户认证失败"),
 
-    USER_NOX_EXISTS("200000","用户不存在");
+    REPEAT_OFFICER("100018","用户信息重复"),
+    ID_CARD_WRONG("100018","身份证号格式不正确"),
+    REQUEST_PARAM_INVALID("100020", "{}不合法"),
+    REQUEST_PARAM_UPLOAD("100021", "请选择上传文件"),
+    REQUEST_PARAM_UPLOAD_FORMAT("100022", "上传文件格式不正确"),
+
+    /************************ 系统管理部分 **********************/
+    Role_not_Exists("200001", "角色不存在"),
+    Menu_not_Exists("200002", "菜单不存在"),
+    User_not_Exists("200003", "用户不存在"),
+    Menu_has_child("200004", "存在子项目，不能删除"),
+    Role_Exists("200005", "角色已存在"),
+    User_Exists("200006", "用户[{}]已存在"),
+    REPEAT_COMMIT("200007", "重复请求，请稍后再试"),
+    USER_NOX_EXISTS("100008", "用户不存在"),
+    Agent_Exists("200009", "代理商[{}]已存在"),
+    Channel_Exists("200010", "渠道名[{}]已存在"),
+    Agent_NOT_Exists("200011","代理商[{}]不存在"),
+    Channel_NOT_Exists("200012","渠道[{}]不存在"),
+    AgentCode_NOT_Exists("200013","代理商编号[{}]不存在"),
+    ChannelCode_NOT_Exists("200014","渠道编号[{}]不存在"),
+    MobileNo_Exists("200015","电话号码[{}]已存在,请修改后添加"),
+    Approve_NOT_Exists("200016","请填写拒绝理由"),
+    Picture_Format_Wrong("200017","图片格式不正确"),
+    Phone_Format_Wrong("200018","电话号码格式不正确"),
+    IdCard_Exists("200019", "身份证号[{}]已存在"),
+    FlaseField_IS_WRONG("200016","请传入正确的虚假原因"),
+    /*********************** 系统错误码90开头 *********************/
+    TOKEN_ERROR("900000", "Token异常,需重新登录"),
+    NOT_PERMISSION_ACCESS("900001", "没有权限访问"),
+    USER_FREEZED("900002", "用户被冻结"),
+    USER_LOINGINFO_ERROR("900003", "用户名/密码错误"),
+    Authentication_Failed("900004", "不允许访问"),
+    Token_Refresh_Failed("900005", "Token刷新失败"),
+
+    /*********************** 活动 *********************/
+    ACTIVITY_NOT_EDIT("300001", "优惠券已经发放，不可编辑"),
+    ;
+
     private final String code;
 
     private final String message;

@@ -1,12 +1,16 @@
 package com.tcs.household.mgr.facade;
 
 import cn.hutool.crypto.SecureUtil;
+import com.github.pagehelper.Page;
+import com.tcs.household.enums.LoginUserTypeEnums;
+import com.tcs.household.enums.MessageCode;
+import com.tcs.household.exception.BizException;
 import com.tcs.household.mgr.dao.SysCommonDao;
 import com.tcs.household.mgr.dao.SystemUserInfoDao;
 import com.tcs.household.mgr.dao.SystemUserRoleDao;
+import com.tcs.household.mgr.model.request.UserListRequest;
 import com.tcs.household.mgr.model.request.UserRequest;
-import com.tcs.household.mgr.model.response.LoginUserInfo;
-import com.tcs.household.mgr.model.response.MenuInfo;
+import com.tcs.household.mgr.model.response.*;
 import com.tcs.household.mgr.persistent.entity.SystemPermissionInfo;
 import com.tcs.household.mgr.security.model.UserAuthInfo;
 import com.tcs.household.persistent.entity.SystemUserInfo;
@@ -87,6 +91,114 @@ public class SysUserFacadeService {
         user.setPermissions(lisPerm);
         return user;
     }
+
+    /**
+     * 保存用户登录信息
+     * @param loginName
+     * @param requestIp
+     */
+    public void saveUserLoginInfo(String loginName, String requestIp) {
+        userInfoDao.saveUserLoginInfo(loginName, requestIp);
+    }
+
+    /**
+     * 分页获取用户数据
+     * @param param
+     * @return
+     */
+    public UserListResponse getUserList(UserListRequest param) {
+        UserListResponse resp = new UserListResponse();
+        UserAuthInfo UserAuthInfo = (UserAuthInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Page<SystemUserInfo> lisUser = userInfoDao.getUserList(param);
+        resp.copyPageInfo(lisUser);
+        List<UserListItem> userItemList = new ArrayList<>();
+        List<Integer> lisUserId = new ArrayList<>();
+        for (SystemUserInfo u : lisUser.getResult()) {
+            UserListItem item = new UserListItem();
+            item.setCreateTime(u.getCreateTime());
+            item.setLastLoginIp(u.getLastLoginIp());
+            item.setLastLoginTime(u.getLastLoginTime());
+            item.setLoginName(u.getLoginName());
+            item.setMobileNo(u.getMobileNo());
+            item.setUserName(u.getUsername());
+            item.setId(u.getId());
+            item.setFreeze(u.getIsFreeze());
+            userItemList.add(item);
+        }
+        Map<Integer, String> map = sysCommonDao.getUserRoles(lisUserId);
+        for (UserListItem item : userItemList) {
+            item.setRoles(map.get(item.getId()));
+        }
+        resp.setList(userItemList);
+        return resp;
+    }
+
+    /**
+     * 取得用户信息
+     * @param userId
+     */
+    public UserInfo getUserInfo(Integer userId) {
+        SystemUserInfo u = userInfoDao.queryById(userId);
+        if (u == null || 1 == u.getFlag()) {
+            throw new BizException(MessageCode.User_not_Exists.getCode(),
+                    MessageCode.User_not_Exists.getMessage());
+        }
+        UserInfo user = new UserInfo();
+        user.setUserId(u.getId());
+        user.setLoginName(u.getLoginName());
+        user.setMobileNo(u.getMobileNo());
+        user.setUserName(u.getUsername());
+        user.setRoles(userRoleDao.getUserRoles(userId));
+        return user;
+    }
+    /**
+     * 更新用户
+     * @param user
+     */
+    @Transactional
+    public void updateUser(UserRequest user) {
+        if (userInfoDao.userExistsForUpdate(user.getUserId(), user.getLoginName())) {
+            throw new BizException(MessageCode.User_Exists, user.getLoginName());
+        }
+        UserAuthInfo UserAuthInfo = (UserAuthInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        userInfoDao.updateUser(user);
+        userRoleDao.removeDataByUserId(user.getUserId());
+        userRoleDao.addUserRole(user.getUserId(), user.getRoleId());
+    }
+    /**
+     * 删除用户
+     * @param user
+     */
+    @Transactional
+    public void removeUser(UserRequest user) {
+        userInfoDao.removeUser(user.getUserId());
+        userRoleDao.removeDataByUserId(user.getUserId());
+    }
+
+    /**
+     * 冻结用户
+     * @param user
+     */
+    public void freezeUser(UserRequest user, Integer freezeFlg) {
+        userInfoDao.freezeUser(user.getUserId(), freezeFlg);
+    }
+
+
+
+    /**
+     *
+     * @param loginName
+     */
+    private void checkUserLoginName(String loginName) {
+        SystemUserInfo u = new SystemUserInfo();
+        u.setLoginName(loginName);
+        if (userInfoDao.queryCount(u) > 0) {
+            throw new BizException(MessageCode.User_Exists, loginName);
+        }
+    }
+
+
     private List<MenuInfo> convertMenu(List<SystemPermissionInfo> lisMenu) {
         List<MenuInfo> retList = new ArrayList<>();
         Map<Integer, MenuInfo> mapMenuInfo = new HashMap<>();
