@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         ).permitAll()
                 .antMatchers(loginUrl).permitAll()         //授权api
                 .antMatchers("/api/web/**").permitAll()
-                .antMatchers("/sys/user/add","/sys/user/login").permitAll()
+                .antMatchers("/sys/user/add","/sys/user/login","/swagger").permitAll()
                 .anyRequest().authenticated();      //禁用其他链接(需要认证)
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);  //添加JWT filter
 

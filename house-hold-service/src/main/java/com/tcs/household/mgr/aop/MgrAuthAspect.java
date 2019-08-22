@@ -23,7 +23,8 @@ import org.springframework.stereotype.Component;
 @Order(2)
 public class MgrAuthAspect {
 
-    @Pointcut(value = "execution(public * com.tcs.household.mgr.controller.*.*(..)) && !execution(public * com.tcs.household.mgr.controller.SysController.addUser(..))")
+    @Pointcut(value = "execution(public * com.tcs.household.mgr.controller.*.*(..)) && !execution(public * com.tcs.household.mgr.controller.SysController.addUser(..))+" +
+            "&& !execution(public * com.tcs.household.mgr.controller.CommonController.*.*(..))")
     public void controllerCut(){}
 
     @Around(value = "controllerCut()")

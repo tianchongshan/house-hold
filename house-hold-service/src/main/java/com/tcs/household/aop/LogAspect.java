@@ -25,7 +25,8 @@ import java.util.UUID;
 @Order(1)
 public class LogAspect {
 
-    @Pointcut(value="execution(public * com.tcs.household.mgr.controller.*.*(..)) && !execution(public * com.tcs.household.mgr.controller.SysController.addUser(..))")
+    @Pointcut(value="execution(public * com.tcs.household.mgr.controller.*.*(..)) && !execution(public * com.tcs.household.mgr.controller.SysController.addUser(..))" +
+            "&& !execution(public * com.tcs.household.mgr.controller.CommonController.*.*(..))")
     public void controllerCut() {}
 
     @Around(value="controllerCut()")

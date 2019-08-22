@@ -10,6 +10,10 @@ import com.tcs.household.mgr.model.response.*;
 import com.tcs.household.mgr.security.model.UserAuthInfo;
 import com.tcs.household.model.response.JsonResponse;
 import com.tcs.household.util.RedisUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
+import io.swagger.annotations.AuthorizationScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,6 +29,7 @@ import java.util.List;
  */
 @CrossOrigin
 @RestController
+@Api(value = "sys",description = "the sys Api")
 public class SysController {
 
     @Autowired
@@ -57,6 +62,7 @@ public class SysController {
      * @throws AuthenticationException
      */
 
+    @ApiOperation(value = "user login" , notes = "" , response = String.class)
     @RequestMapping(value = "${admin.login.url}")
     public JsonResponse<String> createAuthenticationToken(@RequestBody LoginUser loginUser, HttpServletRequest request)
             throws AuthenticationException {

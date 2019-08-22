@@ -38,10 +38,7 @@ public class SystemUserInfoDao extends BaseDao<SystemUserInfo> {
      * @return
      */
     public SystemUserInfo getUserByLoginName(String userLoginName) {
-        SystemUserInfo user = new SystemUserInfo();
-        user.setLoginName(userLoginName);
-        user.setFlag(0);
-        return mapper.selectOne(user);
+        return mapper.getUserByLoginName(userLoginName);
     }
 
     /**
@@ -59,7 +56,7 @@ public class SystemUserInfoDao extends BaseDao<SystemUserInfo> {
             c.andLike("userName", param.getUserName() + "%");
         }
         if (!StrUtil.isEmpty(param.getMobileNo())) {
-            c.andLike("mobileNo", param.getUserName() + "%");
+            c.andLike("mobileNo", param.getMobileNo() + "%");
         }
         c.andEqualTo("type", LoginUserTypeEnums.admin.getType());
         example.setOrderByClause("create_time desc");
@@ -110,16 +107,8 @@ public class SystemUserInfoDao extends BaseDao<SystemUserInfo> {
     /**
      * 保存用户登录信息
      */
-    public void saveUserLoginInfo(String loginName,String requestIp){
-        SystemUserInfo user=new SystemUserInfo();
-        user.setLastLoginIp(requestIp);
-        user.setLastLoginTime(new Date());
-        Example example=new Example(SystemUserInfo.class);
-        Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("flag",0)
-                .andEqualTo("loginName",loginName);
-        mapper.updateByExampleSelective(user,example);
-     mapper.saveUserLoginInfo(loginName,requestIp);
+    public void saveUserLoginInfo(String loginName,String requestIp) {
+        mapper.saveUserLoginInfo(loginName, requestIp);
     }
 
     /**
