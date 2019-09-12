@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * create by chongshan.tian01
  **/
-@Api(value = "customerController")
+@Api(description = "User相关的API说明")
 @RestController
 @RequestMapping("/api/customer")
 public class CustomerController {
@@ -25,7 +25,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("/list")
-    @ApiOperation(value = "获得用户列表",notes = "查询数据库中的数据",httpMethod = "GET" ,response = List.class)
+    @ApiOperation(value = "获得用户列表")
     public JsonResponse<List<CustomerResponse>> queryCustomerList(){
         return JsonResponse.success(customerService.queryCustomer());
     }

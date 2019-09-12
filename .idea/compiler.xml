@@ -13,11 +13,19 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="house-hold" target="1.8" />
+      <module name="house-hold" target="1.7" />
       <module name="house-hold-common" target="1.8" />
       <module name="house-hold-dao" target="1.8" />
       <module name="house-hold-interface" target="1.8" />
       <module name="house-hold-service" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="house-hold-common" options="-parameters" />
+      <module name="house-hold-dao" options="-parameters" />
+      <module name="house-hold-interface" options="-parameters" />
+      <module name="house-hold-service" options="-parameters" />
+    </option>
   </component>
 </project>
